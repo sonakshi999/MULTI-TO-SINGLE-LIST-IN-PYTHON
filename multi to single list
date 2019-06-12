@@ -1,0 +1,27 @@
+#multidimensional list to single dimensional list
+list1=[1,[2,[3,[4,[5,[6,[7,8]]]]]]]
+list1.append(0)
+length=len(list1)-1
+flag=False
+#checking for nested list
+for i in range(0,length):
+    flag=(type(list1[i])==list)
+    if flag == True:
+        break
+#logic for breaking down nested lists
+while flag == True:
+    for i in range(0,length):
+        if (type(list1[i])==list)==True:
+            temp = list1[:i]
+            temp.extend(list1[i])
+            list1=temp+list1[i+1:]
+    length=len(list1)-1
+    flag= False
+    #checking for nested list in original list with 1 less dimension
+    for i in range(0,length):
+        flag=(type(list1[i])==list)
+        if flag == True:
+            break
+#deleting the last zero
+del(list1[-1])
+print(list1)
